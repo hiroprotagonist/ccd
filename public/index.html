@@ -1,0 +1,103 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery-ui.custom.css">
+
+  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <header>
+
+  </header>
+  <div role="main" id="main">
+  </div>
+  <div id="joinform" style="display:none;">
+  	<label for="entername">Enter Name</label>
+  	<input id="entername" type="text"/>
+  	<button onclick="app.join($('input#entername').val());">Join!</button>
+  </div>
+  <footer>
+	
+  </footer>
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="js/plugins.js"></script>
+  <script src="js/libs/underscore-min.js"></script>
+  <script src="js/libs/jquery-ui.custom.min.js"></script>
+  <script src="js/libs/backbone-min.js"></script>
+  <script src="js/src/application.js"></script>
+  <script src="js/src/modules/user.js"></script>
+
+  <!-- Access template variables with <%= %> -->
+  <script type="text/template" id="user_template">
+  	<div class="plate" date-phase="<%= data.phase %>" id="<%= data._id %>">
+  		<div class="name"><%= data.name %></div>
+  		<div class="day"><%= data.day %></div>
+  		<button data-role="increase-day">+</button>
+  	</div>
+  </script>
+  <script type="text/template" id="join_form_container">
+  	<div id="join_form">
+			<label for"join_form_name">Enter Your Name</label>
+			<input id="join_form_name" name="name"/>
+			<button id="join_form_cancel">Umpf! I am not ready yet</button>
+			<button id="join_form_join">I'll take the challenge</button>
+  	</div>
+  </script>
+  
+  <button id='show_join_form'>Join!</button>
+
+  <script>
+    //var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    //(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    //g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    //s.parentNode.insertBefore(g,s)}(document,'script'));
+   /*
+    $(document).ready(function() {
+    	app = new App();
+    	$('button[data-role="increase-day"]').live('click', function() {
+    		var plate = $(this).parent('.plate')
+			  , id = plate.attr('id')
+			  , data = {
+			  		name: $('[data-role="name"]', plate).text(),
+			  		phase: plate.data('phase'),
+			  		day: parseInt($('[data-role="day"]', plate).text()) +1};
+    		var success = function(user) {
+				app.renderData(user, plate);
+			};
+    		app.update(id, data, success);
+    	});
+    	$('button[data-role="remove-user"]').live('click', function() {
+    		if( !confirm('Really leaving? CCD is good for you.') ) {
+    			return false;
+    		}
+    		var plate = $(this).parent('.plate')
+			  , id = plate.attr('id');
+    		var success = function(data) {
+				plate.fadeOut('slow', function() {$(this).remove();});
+			};
+			var error = function() { alert('Ooops! Delete failed.'); };
+    		app.remove(id, success);
+    	});
+
+    app.listAll();
+    });
+    */
+  </script>
+<!--  <script src="js/dev.js"></script>-->
+</body>
+</html>

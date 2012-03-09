@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z $node ] ; then
+	node='localhost:8080'
+fi
+
+curl -v -X POST http://$node/users/$1 -H "Content-Type: application/json" --data '
+{"name":"Daniel",
+	"day": 2}'
