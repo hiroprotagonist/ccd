@@ -27,5 +27,5 @@ Install nodemon globally.
 
 ~~~
 $> npm install -g nodemon
-$>modemon app.js
+$> nodemon app.js
 ~~~
