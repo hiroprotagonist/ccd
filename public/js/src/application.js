@@ -23,15 +23,16 @@ var ccd = {
 // initialized. Treat this as your single entry point into the 
 // application.
 jQuery(function($) {
-	 // Initialize your application here.
-	 um = ccd.module('user');
-	 
-	 $('#show_join_form').click(function() {
-	 	new um.Joinform;
-	 });
-	 
-	 ulist = new um.List;
-	 listview = new um.Listview({ 'el': $('#main'), collection: ulist });
-	 ulist.fetch();
+	// Initialize your application here.
+	um = ccd.module('user');
+	ulist = new um.List;
+
+	var joinDialog = new um.Joinform({el: $('body'), collection: ulist});
+	$('#show_join_form').click(function() {
+	joinDialog.show();
+	});
+
+	listview = new um.Listview({ 'el': $('#main'), collection: ulist });
+	ulist.fetch();
 	
 });

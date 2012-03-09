@@ -52,32 +52,43 @@
 		}
 	});
 	
-	
 	User.Joinform = Backbone.View.extend({
 		events: {
 			'click #join_form_join':	'submit_join',
 			'click #join_form_cancel':	'cancel_join'
 		},
 		render: function() {
-			$(this.dlgform).dialog({
-				autoOpen: open,
+			var dialog = this.template({data:{}});
+			this. myel = $(dialog).dialog({
+				autoOpen: false,
 				height:480,
 				width: 640,
 				title: 'Join CCD',
 				modal: true
 			});
-			this.el = this.dlgform;
+			
 			this.delegateEvents(this.events);
 			return this;
 		},
 		initialize: function() {
 			_.bindAll(this, 'render');
-			this.dlgform = $("#join_form_container").html();
+			this.template = _.template($("#join_form_container").html());
 			this.render().el;
 		},
 		show: function() {
+			$(this.myel).dialog( 'open' );
 		},
-		submit_join: function() { console.log('join');},
+		close: function() {
+			$(this.myel).dialog( 'close' );
+		},
+		submit_join: function() {
+			var data = {
+				name: $('#join_form_name').val(),
+				phase: 'black',
+				day: 0
+			}
+			this.collection.create( data ); 
+		},
 		cancel_join: function() { console.log('cancel');}
 	});
 
