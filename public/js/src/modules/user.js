@@ -28,10 +28,26 @@
 			return this;
 		},
 		events: {
-			'click button[data-role="increase-day"]': 'increaseDay'
+			'click button[data-role="increase-day"]': 'increaseDay',
+			'click button[data-role="remove-user"]': 'removeUser'
 		},
 		increaseDay: function() {
 			console.log(this.model.fetch());
+		},
+		removeUser: function() {
+			if ( confirm('Really remove this user?') ) {
+				this.model.destroy({
+					sucess: function(model, response) {
+						console.log('success');
+						console.log(model);
+						console.log(response);
+					},
+					error: function(response) {
+						console.log('error');
+						console.log(response);	
+					}
+				});
+			}
 		}
 	});
 	User.Listview = Backbone.View.extend({
@@ -87,9 +103,12 @@
 				phase: 'black',
 				day: 0
 			}
-			this.collection.create( data ); 
+			this.collection.create( data );
+			$(this.myel).dialog( 'close' );
 		},
-		cancel_join: function() { console.log('cancel');}
+		cancel_join: function() {
+			$(this.myel).dialog( 'close' );		 
+		}
 	});
 
 

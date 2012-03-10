@@ -76,5 +76,8 @@ app.del('/users/:id', function(req, res) {
 		else res.json({msg: "Bye Bye! You're out."}, 200);
 	});
 });
-app.listen(8080);
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+	console.log("Listening on " + port);
+});
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
