@@ -36,6 +36,8 @@ Users.prototype.remove = function(id, callback) {
 };
 Users.prototype.update = function(id, data, callback) {
 	var users = this;
+	// Falls da ein _id drinne ist muss das raus.
+	delete data._id;
 	this.db.users.update({_id: this.db.ObjectId( id )}, data, {multi: false}, function(err) {
 			if( err ) callback(this.err);
 			else users.findUser(id, callback);
