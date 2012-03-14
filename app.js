@@ -12,8 +12,8 @@ require('./users_provider').Users;
 var users = new Users();
 
 everyauth.twitter
-	.consumerKey('ERQK6k9y3fX7H4jxKk1TQ')
-	.consumerSecret('iljWnIJWt6gGbGOp7jaJqMbfxY7ZrpDqfcwCgfYmBI')
+	.consumerKey('')
+	.consumerSecret('')
 	.findOrCreateUser(function(session, accessToken, accessTockenSecret, twitterUserData) {
 		console.dir( twitterUserData );
 	});
