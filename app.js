@@ -4,22 +4,35 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
-	// ???	
-	require('./users_provider').Users;
+  , routes = require('./routes')
+  , everyauth = require('everyauth');
+  //, connect = require('connect');
+
+require('./users_provider').Users;
 var users = new Users();
+
+everyauth.twitter
+	.consumerKey('ERQK6k9y3fX7H4jxKk1TQ')
+	.consumerSecret('iljWnIJWt6gGbGOp7jaJqMbfxY7ZrpDqfcwCgfYmBI')
+	.findOrCreateUser(function(session, accessToken, accessTockenSecret, twitterUserData) {
+		console.dir( twitterUserData );
+	});
+
 var app = module.exports = express.createServer();
+everyauth.helpExpress(app);
 
 // Configuration
-
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+app.configure(function() {
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'jade');
+	app.use(express.bodyParser());
+	app.use(express.cookieParser());
+	app.use(express.methodOverride());
+	app.use(express.session({secret: "0sk38dfn2390"}));
+	app.use(everyauth.middleware());
+	app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+	app.use(app.router);
+	app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
