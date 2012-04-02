@@ -1,0 +1,12 @@
+h1= 'Brave nerds of our time'
+div(id='main')
+a(href='/logout') Logout
+a(href='/you') You
+script(type='text/javascript')
+  jQuery(function($) {
+    // Initialize your application here.
+    var module_user = ccd.module('user');
+    var users = new module_user.List;
+    var listview = new module_user.Listview({ 'el': $('#main'), collection: users });
+    users.fetch();
+  });

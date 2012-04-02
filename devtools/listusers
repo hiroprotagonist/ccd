@@ -1,6 +1,0 @@
-#!/bin/sh
-if [ -z $node ] ; then
-	node='localhost:8080'
-fi
-
-curl -v -X GET http://$node/users
