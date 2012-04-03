@@ -89,6 +89,46 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+html, background  {
+	heigth: 100%;
+}
+body {
+	background-color: #292929;
+}
+#orbit {
+	top: 50%;
+	left: 50%;
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	margin: -160px 0 0 -420px;
+}
+.welcome {
+	width: 400px;
+	background: white;
+	color: #898632;
+	padding: 0px 4px 4px 20px;
+	border-radius: 4px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 125px rgba(255, 255, 255, 0.35);
+}
+.sign-in, .sign-up {
+	width: 260px;
+	background: white;
+	border-radius: 4px;
+	padding: 10px;
+	position: absolute;
+	
+}
+.sign-in {
+	left: 435px;
+	top: 21px;
+}
+.sign-up {
+	left: 435px;
+	top: 130px;
+}
+
+
 /* My Style */
 .plate {
 	display: block;

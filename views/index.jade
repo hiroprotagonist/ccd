@@ -1,2 +1,16 @@
-h1= title
-p Welcome to #{everyauth.user.login}
+div#orbit
+  div(class='welcome')
+    h1= "Don't Panic"
+    p This platform will help you keeping track of your progress in the clean code developer program and help connecting with other intriged developers
+  div(class='sign-in')
+    form(action='/login', method='POST')
+      input(type='text', placeholder='Login or eMail', name='login')
+      input(type='password', placeholder='Your password', name='password')
+      input(type='submit', value='Sign in')
+  div(class='sign-up')
+    h3= 'New here? Sign up!'
+    form(action='/register', method='POST')
+      input(type='text', placeholder='Login or eMail', name='login')
+      input(type='password', placeholder='Your password', name='password')
+      input(type='submit', value='Sign up')
+

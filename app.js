@@ -100,7 +100,7 @@ app.configure('development', function() {
 	app.set('view options', {
 		pretty: true
 	});
-	everyauth.debug = true;
+	everyauth.debug = false;
 });
 
 models.defineModels(mongoose, function() {
@@ -132,7 +132,7 @@ function updateGranted(req, res, next) {
 var fireWall = [loadUser, updateGranted];
 
 // UI routes
-app.get('/', loadUser, routes.index);
+app.get('/', routes.index);
 app.get('/you', loadUser, routes.you);
 app.get('/all', loadUser, routes.all);
 // app.get('/documents', loadUser, routes.index);
