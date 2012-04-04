@@ -89,11 +89,12 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
-html, background  {
+html, body  {
 	heigth: 100%;
 }
 body {
 	background-color: #292929;
+	color: #898632;
 }
 #orbit {
 	top: 50%;
