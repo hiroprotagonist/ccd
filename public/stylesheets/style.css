@@ -58,7 +58,8 @@ button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; resize: vertical; }
 input:valid, textarea:valid {  }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
-
+input::-webkit-input-placeholder {color: #999; font-size: small;}
+input:-moz-placeholder {color: #999; font-size: small;}
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
@@ -141,12 +142,21 @@ body {
 	top: 140px;
 	height: 1	50px;
 }
+.sign-in input, .sign-up input {
+	width: 250px;
+	height: 20px;
+	margin: 0 0 5px;
+	text-indent: 5px;
+}
 .sign-in input[type="submit"] {
+	width: 100px;
+	height: auto;
     border-color: #467B96;
     border-radius: 4px 4px 4px 4px;
     border-style: solid;
     color: white;
-    margin-top: 5px;
+    margin-top: 0px;
+	text-indent: 0;
     padding: 2px 15px;
     text-shadow: 0 1px #292929;
 	background: #467b96; /* Old browsers */
@@ -170,6 +180,13 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#315669', endColorstr='#17568d',GradientType=0 );
 }
 .sign-up h3 { color: #467B96; }
+.sign-up input[type="submit"] {
+	height: auto;
+    margin-top: 0px;
+	text-indent: 0;
+}
+
+
 
 /* My Style */
 .plate {
@@ -189,4 +206,45 @@ body {
 }
 .day {
 	font-size: xx-large;
+}
+/* Sign Up Page */
+.page-container {
+	margin: 0 auto;
+	min-height: 100%;
+}
+.signup-container {
+	width: 800px;
+	background: white;
+	margin: 0 auto;
+	border-radius: 10px;
+	border-color: #898632;
+}
+.signup-container h1 {
+	padding: 15px;
+	font-size: x-large;
+	color: #333;
+}
+.signup-container form { 
+	padding: 15px;
+}
+.signup-container label {
+	font-size: small;
+	color: #467B96;
+}
+.signup-container input[type=text], .signup-container input[type=password] {
+	width: 380px;
+	font-size: small;
+	text-indent: 20px;
+	text-indent: 10px;
+	padding: 4px;
+	margin: 5px 0;
+}
+li.error {
+	color: #B20E10;
+	font-size: small;
+}
+ul#errors {
+	list-style: decimal outside none;
+	margin: 0;
+	padding: 0 35px
 }

@@ -1,14 +1,16 @@
-h2 Register
-- if ('undefined' !== typeof errors && errors.length)
-  ul#errors
-    - each error in errors
-      li.error= error
-form(action='/register', method='post')
-  #login
-    label(for=everyauth.password.loginFormFieldName) Login
-    input(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName])
-  #password
-    label(for=everyauth.password.passwordFormFieldName) Password
-    input(type='password', name=everyauth.password.passwordFormFieldName)
-  #submit
-    input(type='submit') Register
+div.page-container.signup
+  div.signup-container
+    h1 Sign Up with CCD
+    - if ('undefined' !== typeof errors && errors.length)
+      ul#errors
+        - each error in errors
+          li.error= error
+    form(action='/register', method='post')
+      #login
+        input(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName], placeholder='Login')
+        label(for=everyauth.password.loginFormFieldName) Enter your public user name
+      #password
+        input(type='password', name=everyauth.password.passwordFormFieldName, placeholder='Password')
+        label(for=everyauth.password.passwordFormFieldName) Choose a password!
+      #submit
+        input(type='submit', value='Sign Up')
