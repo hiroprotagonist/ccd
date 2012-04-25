@@ -94,7 +94,7 @@ html, body  {
 	heigth: 100%;
 }
 body {
-	background-color: #292929;
+	
 	color: #898632;
 }
 #orbit {
@@ -212,6 +212,7 @@ body {
 	margin: 0 auto;
 	min-height: 100%;
 }
+.signin-container,
 .signup-container {
 	width: 800px;
 	background: white;
@@ -219,18 +220,22 @@ body {
 	border-radius: 10px;
 	border-color: #898632;
 }
+.signin-container h1,
 .signup-container h1 {
 	padding: 15px;
 	font-size: x-large;
 	color: #333;
 }
+.signin-container form,
 .signup-container form { 
 	padding: 15px;
 }
+.signin-container label,
 .signup-container label {
 	font-size: small;
 	color: #467B96;
 }
+.signin-container input[type=text], .signin-container input[type=password],
 .signup-container input[type=text], .signup-container input[type=password] {
 	width: 380px;
 	font-size: small;
@@ -248,3 +253,11 @@ ul#errors {
 	margin: 0;
 	padding: 0 35px
 }
+html { 
+	background: url('images/bglight.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
