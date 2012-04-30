@@ -74,18 +74,27 @@ everyauth.password
 
 var app = module.exports = express.createServer(  );
 everyauth.helpExpress(app);
+
 // Configuration
 // This is like an Interceptor Stack in Struts2
 // Node People call it middleware
 // The middlewares/Interceptors will run as orderd
 app.configure(function() {
+    var arguments = process.argv.splice(2);
+	var redisHostName = arguments[0];
+	if (redisHostName=='' || redisHostName==undefined)  {
+		redisHostName = 'localhost';
+	}
+	
+	
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.set('view options', {layout: true});
 	
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
-	app.use(express.session({secret: "0sk38dfn2390", store: new RedisStore }));
+	console.log("Using %s for redis.", redisHostName);
+	app.use(express.session({secret: "0sk38dfn2390", store: new RedisStore({ host: redisHostName }) }));
 	
 	app.use(everyauth.middleware());
 

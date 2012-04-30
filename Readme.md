@@ -39,6 +39,12 @@ $> mongod --dbpath data/db
 $> node app.js
 ~~~
 
+If you have installed redis on another server, use the hostname of that server as a parameter
+
+~~~
+$> node app.js redis.domain.com
+~~~
+
 Tip
 ---
 Node wont recompile code during runtime ans you have to restart node everytime code changed.
