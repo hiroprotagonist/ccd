@@ -46,8 +46,6 @@ everyauth.password
 	.postRegisterPath('/register')
 	.registerView('register.jade')
 	.validateRegistration( function(newUserAttr) {
-		console.log('validate');
-		console.dir(newUserAttr);
 		var err = new Array;
 		if ( !newUserAttr.login || newUserAttr.login.trim().length < 3 ) {
 			err.push('Login must be 3 characters long at least');
@@ -62,10 +60,8 @@ everyauth.password
 		var promise = this.Promise();
 		user.save(function(err) {
 			if ( err ) {
-				console.log( 'Fail ' + err );
 				promise.fulfill([err]);
 			} else {
-				console.log( 'Butterweich' );
 				promise.fulfill(user);
 			}
 		});
@@ -76,7 +72,7 @@ everyauth.password
 var app = module.exports = express.createServer(  );
 everyauth.helpExpress(app);
 
-/* Load config.jso */
+/* Load config.json */
 nconf.use('file', {file: './config.json'})
 nconf.load();
 
