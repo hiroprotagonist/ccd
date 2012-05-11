@@ -8,6 +8,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , models = require('./models')
   , everyauth = require('everyauth')
+  , nconf = require('nconf')
   , RedisStore = require('connect-redis')(express)
   , Document
   , db;
@@ -75,42 +76,45 @@ everyauth.password
 var app = module.exports = express.createServer(  );
 everyauth.helpExpress(app);
 
+/* Load config.jso */
+nconf.use('file', {file: './config.json'})
+nconf.load();
+
 // Configuration
 // This is like an Interceptor Stack in Struts2
 // Node People call it middleware
 // The middlewares/Interceptors will run as orderd
 app.configure(function() {
-    var arguments = process.argv.splice(2);
-	var redisHostName = arguments[0];
-	if (redisHostName=='' || redisHostName==undefined)  {
-		redisHostName = 'localhost';
-	}
-	
-	
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.set('view options', {layout: true});
 	
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
-	console.log("Using %s for redis.", redisHostName);
-	app.use(express.session({secret: "0sk38dfn2390", store: new RedisStore({ host: redisHostName }) }));
+	app.use(express.session({
+		secret: "0sk38dfn2390", 
+		store: new RedisStore({ 
+			host: nconf.get('redis').host,
+			port: nconf.get('redis').port
+		}) 
+	}));
 	
 	app.use(everyauth.middleware());
 
 	app.use(express.methodOverride());
 	app.use(app.router);
 	app.use(express.static(__dirname + '/public'));
-});
 
-app.configure('development', function() {
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-	app.set('db-uri', 'mongodb://localhost/nodepad-development');
+	app.set('db-uri', nconf.get('mongo').uri);
 	app.set('view options', {
 		pretty: true
 	});
 	everyauth.debug = false;
 });
+
+// app.configure('development', function() { });
+// app.configure('production', function(){ app.use(express.errorHandler()); });
 
 models.defineModels(mongoose, function() {
 	app.Document = Document = mongoose.model('Document');
@@ -118,11 +122,6 @@ models.defineModels(mongoose, function() {
 	db = mongoose.connect(app.set('db-uri'));
 })
 
-/*
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
-*/
 
 // Routes
 // Everybody can GET everybodies data 

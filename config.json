@@ -1,0 +1,9 @@
+{
+	"mongo": {
+		"uri": "mongodb://localhost/nodepad-development"
+	},
+	"redis": {
+		"host": "localhost"
+	   ,"port": 6379
+	}
+}
